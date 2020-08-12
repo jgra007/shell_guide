@@ -14,19 +14,23 @@ int main()
 	int i;
 	pid_t pid;
 
-	for (i = 0; i < 6; i++)
-	{
-		pid = fork();
 
-		if(pid != 0)
+	            
+	char *arg[] = {"/bin/ls", "-l", "/tmp", NULL};
+
+	for (i = 0; i < 5; i++)
+	{
+		pid = fork();		
+		
+		if(pid != 0) /* proceso padre */
 		{
 			wait(NULL);
+			printf("---------------------------\n\n");
 		}
-		else
+		else if (pid == 0) /* proceso hijo */
 		{
-		printf("[son] pid %d from [parent] pid %d %d\n",
-		       getpid(), getppid(), i);
-		exit(0);
+			printf("[son] pid %d from [parent] pid %d %d\n", getpid(), getppid(), i);
+			execve(arg[0], arg, NULL);
 		}
 	}
 	return(0);
