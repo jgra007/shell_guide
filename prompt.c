@@ -1,4 +1,5 @@
 #include <stdio.h>
+<<<<<<< HEAD
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -35,4 +36,28 @@ int main()
 		i++;
 	}
 	return (*split_string);
+=======
+#include <stdlib.h>
+
+int input(char *s, int length);
+
+int main(void)
+{
+	char *buffer;
+	size_t bufsize = 32;
+
+
+	buffer = (char *)malloc(bufsize * sizeof(char));
+	if (buffer == NULL)
+	{
+		perror("Unable to allocate buffer");
+		exit(1);
+	}
+
+	printf("$ ");
+	getline(&buffer, &bufsize, stdin);
+	printf("%s\n", buffer);
+
+	return (0);
+>>>>>>> 4df1f1ee09b562bdff03f6db6481b9e85deb8888
 }
